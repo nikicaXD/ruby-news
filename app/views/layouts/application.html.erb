@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NewsOnRails</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+
+  </head>
+
+  <body class=" <%= user_signed_in? ? 'loggedIn' : 'loggedOut'  %> " >    
+<%#         
+        <div class="header">
+            
+        </div> %>
+
+
+        <div class="sidebar"> 
+          <h3>Novice</h3>
+          <div style="display: flex; flex-direction: column; padding-left: 29px" >
+
+            <%= form_tag search_index_url, :method => 'get' do %>
+                    <%= text_field_tag :search, params[:search], placeholder: 'Search...' %>
+                    <%= button_tag :submit do %>
+                      <i class='uil uil-search'>search</i>
+                    <% end %>
+                <% end %>
+
+                <div style="height: 12px" ></div>
+            <% if current_user %>
+              
+              <%= link_to "HOME", '/' %>
+              <%= link_to "PROFILE", profile_path(current_user) %>
+
+              <%= link_to('LOGOUT', destroy_user_session_path, method: :delete) %>
+
+
+            <div style="height: 28px" ></div>
+                <%= link_to " ADD ARTICLE", '/articles/new' %>
+            <% end %> 
+          </div>
+
+          <div>
+
+                    </div>
+        </div>
+
+        
+        <div class="content">
+        <p class="notice"><%= notice %></p>
+        <p class="alert"><%= alert %></p>
+
+            <%= yield %>
+        </div>
+
+
+  </body>
+</html>

@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+
+<div><%= @article.title %></div>
+<%= render 'components/image', image: @article.cover, size: 150 %>
+<div><%= @article.description %></div>
+<div></div>
+<% if @article.user == current_user %>
+    <%= link_to '+ post', articlepost_path(@article.id) %>
+<% end %>
+
+<table>
+<% @article.posts.sort_by{|u| u.position}.each do |s| %>
+    <tr>
+        <td><%= s.position %> </td>
+        <td><%= s.title %> </td>
+
+    </tr>
+<% end %>
+</table>

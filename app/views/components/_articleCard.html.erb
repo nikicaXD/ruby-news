@@ -1,0 +1,15 @@
+<div class="sor-card" >
+    <div style="margin-right: 12px"> 
+        <%= link_to   article_path(article) do %>
+            <%= render 'components/image', image: article.cover, size: 150 %>
+        <% end %>
+    </div>
+    <div>
+        <p> <%= article.title %>,  <%= link_to article.user.name , profile_path(article.user) %> </p>
+        <p> <%= article.genre.name %>  </p>
+        <%= link_to 'View', article_path(article) %></td>
+        <% if article.user == current_user %>
+            <%= link_to 'Edit', edit_article_path(article) %></td>
+        <% end  %>
+    </div>
+</div>
